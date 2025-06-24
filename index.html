@@ -31,11 +31,11 @@
 			});
 
 			map.on('load', () => {
+				// 三重県全体
 				map.addSource('mie', {
 					type: 'geojson',
-					data: 'mie_population.geojson'
+					data: 'mie_population.geojson',
 				});
-
 				map.addLayer({
 					id: 'population-layer',
 					type: 'fill',
@@ -45,16 +45,36 @@
 							'interpolate',
 							['linear'],
 							['get', 'T001100001'],
-							0,
-							'#f0f9e8',
-							5000,
-							'#bae4bc',
-							10000,
-							'#7bccc4',
-							15000,
-							'#2b8cbe',
-							20000,
-							'#08589e'
+							0, '#f0f9e8',
+							5000, '#bae4bc',
+							10000, '#7bccc4',
+							15000, '#2b8cbe',
+							20000, '#08589e'
+						],
+						'fill-opacity': 0.75,
+						'fill-outline-color': '#ffffff'
+					}
+				});
+
+				// 三重県北部
+				map.addSource('mie_north', {
+					type: 'geojson',
+					data: 'mie_north_population.geojson',
+				});
+				map.addLayer({
+					id: 'population-layer-north',
+					type: 'fill',
+					source: 'mie_north',
+					paint: {
+						'fill-color': [
+							'interpolate',
+							['linear'],
+							['get', 'T001100001'],
+							0, '#f0f9e8',
+							5000, '#bae4bc',
+							10000, '#7bccc4',
+							15000, '#2b8cbe',
+							20000, '#08589e'
 						],
 						'fill-opacity': 0.75,
 						'fill-outline-color': '#ffffff'
